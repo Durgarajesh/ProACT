@@ -1,0 +1,53 @@
+.well.project-section
+	%h3.project-header
+		Projects
+	%a.btn.btn-primary.btn-sm.create-btn{href: new_project_path, 'data-no-turbolink' => true}
+		New Project
+	%br/
+	%table.table.table-bordered
+		%thead
+			%td S.NO
+			%td Project Name
+			%td Developers
+			%td Action
+		- @projects.each_with_index do |proj, i|
+			%tr
+				%td 
+					= i+1
+				%td
+					= proj.name
+				%td 
+				%td
+					%a.btn.btn-info.btn-sm{href: edit_project_path(proj.id)}
+						%span.glyphicon.glyphicon-pencil
+						Edit
+					= link_to project_path(proj), method: :delete, 'data-no-turbolink' => true, class: "btn btn-danger btn-sm" do
+						%span.glyphicon.glyphicon-trash
+						Delete
+
+.well
+	%h3
+		Developers
+	%table.table.table-bordered
+		%thead
+			%td S.NO
+			%td Name
+			%td email
+			%td Projects
+			%td Action
+		- @developers.each_with_index do |dev, i|
+			%tr
+				%td 
+					= i+1
+				%td
+					= dev.name
+				%td 
+					= dev.email
+				%td
+				%td
+					%a.btn.btn-info.btn-sm{href: edit_developer_path(dev.id)}
+						%span.glyphicon.glyphicon-pencil
+						Edit
+					= link_to developer_path(dev), method: :delete, 'data-no-turbolink' => true, class: "btn btn-danger btn-sm" do
+						%span.glyphicon.glyphicon-trash
+						Delete

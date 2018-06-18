@@ -1,0 +1,10 @@
+.well
+	.h2
+		Create Project
+	.row
+		.col-md-8
+			= simple_form_for(@project) do |f|
+				= f.input :name
+				= f.association :developers, as: :select
+				= link_to 'Cancel', admin_dashboard_path, class: "btn btn-danger btn-sm", 'data-no-turbolink' => true
+				= f.button :submit, class: "btn btn-success btn-sm"

@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ProAct
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar-light{style: "background-color: #e3f2fd;"}
+      .container-fluid
+        .navbar-header
+          %a.navbar-brand{href: root_path} PRO-ACT
+        #navbar.navbar-collapse.collapse
+          - if developer_signed_in?
+            %ul.nav.navbar-nav.navbar-right
+              %li
+                = link_to "SignOut", destroy_developer_session_path, method: :delete, 'data-no-turbolink' => true 
+  %br/
+  .row
+    .col-md-2
+    .col-md-8
+      = yield
+    .col-md-2
