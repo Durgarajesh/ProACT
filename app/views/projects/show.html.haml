@@ -1,0 +1,35 @@
+%h3
+	= @project.name
+
+.well.project-section
+	%h3.project-header
+		To do list
+	%br/
+	%table.table.table-bordered
+		%thead
+			%td S.NO
+			%td Name
+			%td Esimated Time 
+			%td Status
+		- @stories.each_with_index do |s, i|
+			%tr
+				%td 
+					= i+1
+				%td
+					= s.name
+				%td
+					= s.hours
+				%td
+					= map_story_status(s.status)
+
+= simple_form_for @story do |f|
+	= f.input :project_id, as: :hidden, input_html:{value: @project.id}
+	.row
+		.col-md-6
+			= f.input :name, label: false, placeholder: "Enter Name of Task"
+		.col-md-6
+			= f.input :hours, label: false, placeholder: "Estimated hours"
+	= link_to 'Back to Dashboard', admin_dashboard_path, class: "btn btn-danger btn-sm", 'data-no-turbolink' => true
+	= f.button :submit, class: "btn btn-success btn-sm", id: "add_task"
+
+	

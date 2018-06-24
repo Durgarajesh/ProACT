@@ -7,9 +7,8 @@ class ProjectsController < ApplicationController
 
 	def create
 		@project = Project.new(project_params)
-		@project.developers.build
-		if @project.save   
-      redirect_to admin_dashboard_path 
+		if @project.save
+      redirect_to admin_dashboard_path
     else
       render :new
     end   
@@ -28,6 +27,12 @@ class ProjectsController < ApplicationController
 		end
 	end
 
+	def show
+		@project = Project.find(params[:id])
+		@story = Story.new
+		@stories =  @project.stories.all
+	end
+
 	def destroy
 		@project = Project.find(params[:id])   
     if @project.delete   
@@ -39,6 +44,6 @@ class ProjectsController < ApplicationController
 
 	private
 	def project_params
-		params.require(:project).permit(:name, :developer_ids)
+		params.require(:project).permit(:name)
 	end
 end

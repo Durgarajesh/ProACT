@@ -7,5 +7,7 @@ Rails.application.routes.draw do
 
   resources :projects
 
+  resources :stories
+
   resources :developers
 end
